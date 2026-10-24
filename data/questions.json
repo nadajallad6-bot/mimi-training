@@ -1,0 +1,53 @@
+[
+  { "category": "animals", "emoji": "🐱", "question": "أيّ حيوان يقول مياو؟", "options": ["الكلب", "القطة", "البقرة"], "answer": "القطة" },
+  { "category": "animals", "emoji": "🐘", "question": "أيّ حيوان له خرطوم طويل؟", "options": ["الفيل", "الزرافة", "الأسد"], "answer": "الفيل" },
+  { "category": "animals", "emoji": "🦒", "question": "أيّ حيوان له رقبة طويلة جدًا؟", "options": ["الحصان", "الزرافة", "الأرنب"], "answer": "الزرافة" },
+  { "category": "animals", "emoji": "🐟", "question": "أين يعيش السمك؟", "options": ["في الماء", "في الصحراء", "على الشجرة"], "answer": "في الماء" },
+  { "category": "animals", "emoji": "🦁", "question": "أيّ حيوان يُسمّى ملك الغابة؟", "options": ["النمر", "الأسد", "الدب"], "answer": "الأسد" },
+  { "category": "animals", "emoji": "🐄", "question": "ماذا تعطينا البقرة؟", "options": ["العسل", "الحليب", "البيض"], "answer": "الحليب" },
+  { "category": "animals", "emoji": "🐝", "question": "أيّ حشرة تصنع العسل؟", "options": ["النحلة", "الفراشة", "النملة"], "answer": "النحلة" },
+  { "category": "animals", "emoji": "🐣", "question": "ما اسم صغير الدجاجة؟", "options": ["الكتكوت", "الجرو", "المهر"], "answer": "الكتكوت" },
+
+  { "category": "colors", "emoji": "🍌", "question": "ما لون الموز الناضج؟", "options": ["أحمر", "أصفر", "أزرق"], "answer": "أصفر" },
+  { "category": "colors", "emoji": "☀️", "question": "ما لون السماء في النهار الصافي؟", "options": ["أخضر", "أزرق", "بني"], "answer": "أزرق" },
+  { "category": "colors", "emoji": "🌱", "question": "ما لون العشب؟", "options": ["أخضر", "بنفسجي", "أسود"], "answer": "أخضر" },
+  { "category": "colors", "emoji": "🍓", "question": "ما لون الفراولة؟", "options": ["أحمر", "أبيض", "أصفر"], "answer": "أحمر" },
+  { "category": "colors", "emoji": "❄️", "question": "ما لون الثلج؟", "options": ["أبيض", "أسود", "برتقالي"], "answer": "أبيض" },
+  { "category": "colors", "emoji": "🎨", "question": "إذا خلطنا الأحمر مع الأصفر، ماذا نحصل؟", "options": ["برتقالي", "أخضر", "بنفسجي"], "answer": "برتقالي" },
+
+  { "category": "math", "emoji": "➕", "question": "كم يساوي 2 + 3؟", "options": ["4", "5", "6"], "answer": "5" },
+  { "category": "math", "emoji": "➖", "question": "كم يساوي 5 - 2؟", "options": ["2", "3", "4"], "answer": "3" },
+  { "category": "math", "emoji": "➕", "question": "كم يساوي 4 + 4؟", "options": ["7", "8", "9"], "answer": "8" },
+  { "category": "math", "emoji": "✋", "question": "كم عدد أصابع اليد الواحدة؟", "options": ["4", "5", "6"], "answer": "5" },
+  { "category": "math", "emoji": "🔢", "question": "أيّ رقم هو الأكبر؟", "options": ["3", "7", "5"], "answer": "7" },
+  { "category": "math", "emoji": "➖", "question": "كم يساوي 10 - 5؟", "options": ["4", "5", "6"], "answer": "5" },
+  { "category": "math", "emoji": "🐈", "question": "كم رِجلًا للقطة؟", "options": ["2", "4", "6"], "answer": "4" },
+
+  { "category": "shapes", "emoji": "🔺", "question": "كم ضلعًا للمثلث؟", "options": ["3", "4", "5"], "answer": "3" },
+  { "category": "shapes", "emoji": "🟦", "question": "كم ضلعًا للمربع؟", "options": ["3", "4", "6"], "answer": "4" },
+  { "category": "shapes", "emoji": "⭕", "question": "أيّ شكل يشبه العجلة؟", "options": ["الدائرة", "المربع", "المثلث"], "answer": "الدائرة" },
+  { "category": "shapes", "emoji": "⭐", "question": "أيّ شكل له خمسة رؤوس؟", "options": ["الدائرة", "النجمة", "المستطيل"], "answer": "النجمة" },
+
+  { "category": "food", "emoji": "🍊", "question": "أيّ فاكهة اسمها مثل لونها؟", "options": ["البرتقال", "التفاح", "العنب"], "answer": "البرتقال" },
+  { "category": "food", "emoji": "🥕", "question": "أيّ واحدة من هذه خُضار؟", "options": ["الموز", "الجزر", "التفاح"], "answer": "الجزر" },
+  { "category": "food", "emoji": "🍉", "question": "أيّ فاكهة خضراء من الخارج وحمراء من الداخل؟", "options": ["البطيخ", "الليمون", "الكمثرى"], "answer": "البطيخ" },
+
+  { "category": "body", "emoji": "👀", "question": "بماذا نرى؟", "options": ["بالأذن", "بالعين", "بالأنف"], "answer": "بالعين" },
+  { "category": "body", "emoji": "👂", "question": "بماذا نسمع؟", "options": ["بالأذن", "باليد", "بالقدم"], "answer": "بالأذن" },
+  { "category": "body", "emoji": "👃", "question": "بماذا نشمّ الروائح؟", "options": ["بالفم", "بالأنف", "بالعين"], "answer": "بالأنف" },
+  { "category": "body", "emoji": "😊", "question": "كم عينًا لدينا؟", "options": ["1", "2", "3"], "answer": "2" },
+
+  { "category": "nature", "emoji": "🌞", "question": "متى تظهر الشمس؟", "options": ["في النهار", "في الليل", "لا تظهر أبدًا"], "answer": "في النهار" },
+  { "category": "nature", "emoji": "🌧️", "question": "ماذا ينزل من الغيوم؟", "options": ["الرمل", "المطر", "الحجارة"], "answer": "المطر" },
+  { "category": "nature", "emoji": "🍂", "question": "كم فصلًا في السنة؟", "options": ["2", "4", "6"], "answer": "4" },
+  { "category": "nature", "emoji": "⛄", "question": "أيّ فصل هو الأبرد؟", "options": ["الصيف", "الشتاء", "الربيع"], "answer": "الشتاء" },
+
+  { "category": "islamic", "emoji": "🕌", "question": "كم عدد أركان الإسلام؟", "options": ["3", "5", "7"], "answer": "5" },
+  { "category": "islamic", "emoji": "📖", "question": "ما أول سورة في القرآن الكريم؟", "options": ["الفاتحة", "البقرة", "الإخلاص"], "answer": "الفاتحة" },
+  { "category": "islamic", "emoji": "🤲", "question": "كم صلاة نصلّي في اليوم؟", "options": ["3", "5", "7"], "answer": "5" },
+  { "category": "islamic", "emoji": "🌙", "question": "في أيّ شهر نصوم؟", "options": ["شعبان", "رمضان", "رجب"], "answer": "رمضان" },
+
+  { "category": "riddles", "emoji": "💇", "question": "شيء له أسنان ولا يعضّ، ما هو؟", "options": ["المشط", "الكلب", "الكرسي"], "answer": "المشط" },
+  { "category": "riddles", "emoji": "🕳️", "question": "شيء كلما أخذتَ منه كَبُر، ما هو؟", "options": ["الكعكة", "الحفرة", "الكرة"], "answer": "الحفرة" },
+  { "category": "riddles", "emoji": "⏰", "question": "له عقارب ولا يلدغ، ما هو؟", "options": ["الساعة", "العقرب", "الكتاب"], "answer": "الساعة" }
+]
