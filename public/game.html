@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="العب مع ميمي: أسئلة ممتعة للأطفال عن الحيوانات والألوان والحساب وغيرها." />
+  <title>العب مع ميمي | MIMI BOT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #263650;
+      --muted: #68768b;
+      --purple: #7666cf;
+      --purple-deep: #5b4cb5;
+      --peach: #ffbb9b;
+      --sky: #ccebf5;
+      --mint: #d3f2df;
+      --paper: #fffefa;
+      --line: #e6e2f7;
+      --right: #2f8a57;
+      --wrong: #c2553a;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Baloo Bhaijaan 2", Tahoma, Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 85% 8%, #f6e9ff 0, transparent 32%),
+        radial-gradient(circle at 10% 92%, #e3f8ee 0, transparent 34%),
+        var(--paper);
+    }
+    button { font: inherit; cursor: pointer; }
+    button:focus-visible, a:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+
+    .stage { max-width: 560px; margin: 0 auto; padding: 18px 20px 48px; }
+
+    .topbar { display: flex; justify-content: space-between; align-items: center; min-height: 44px; }
+    .home-link { color: var(--purple-deep); font-weight: 700; text-decoration: none; font-size: 17px; }
+    .home-link:hover { text-decoration: underline; }
+    .score { background: #fff; border: 2px solid var(--line); border-radius: 999px; padding: 2px 16px; font-weight: 800; font-size: 20px; }
+
+    /* MIMI + speech bubble */
+    .companion { display: flex; align-items: center; gap: 18px; margin: 18px 0 26px; }
+    .mimi { flex: none; width: 120px; filter: drop-shadow(0 12px 10px #6878a02e); }
+    .mimi .antenna { width: 6px; height: 24px; margin: 0 auto; background: #7566ce; position: relative; }
+    .mimi .antenna::before { content: ""; position: absolute; width: 15px; height: 15px; border-radius: 50%; background: #ffb08a; top: -9px; left: -4.5px; }
+    .mimi .head { position: relative; height: 90px; background: #fff; border: 7px solid #7469b8; border-radius: 34px; display: flex; justify-content: center; gap: 26px; padding-top: 24px; }
+    .mimi .eye { width: 15px; height: 20px; border-radius: 50%; background: #39456a; transition: height .2s; }
+    .mimi .mouth { position: absolute; left: 50%; bottom: 13px; transform: translateX(-50%); width: 34px; height: 15px; border-bottom: 5px solid #ffad93; border-radius: 0 0 34px 34px; transition: all .2s; }
+    .mimi .body { width: 84px; height: 54px; margin: 6px auto 0; border-radius: 22px; background: #8e82dd; border: 6px solid #7469b8; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+
+    .mimi[data-mood="happy"] .eye { height: 13px; border-radius: 15px 15px 4px 4px; }
+    .mimi[data-mood="thinking"] .mouth { width: 15px; height: 15px; border: 4px solid #ffad93; border-radius: 50%; }
+    .mimi[data-mood="sad"] .mouth { bottom: 11px; height: 12px; border-bottom: 0; border-top: 5px solid #ffad93; border-radius: 34px 34px 0 0; }
+
+    .mimi.react { animation: hop .45s ease-out; }
+    .mimi[data-mood="sad"].react { animation-name: wobble; }
+    @keyframes hop { 35% { transform: translateY(-12px) rotate(-3deg); } 70% { transform: translateY(0) rotate(2deg); } }
+    @keyframes wobble { 25% { transform: rotate(4deg); } 75% { transform: rotate(-4deg); } }
+
+    .bubble {
+      position: relative; flex: 1; margin: 0;
+      background: #fff; border: 2px solid var(--line); border-radius: 22px;
+      padding: 14px 18px; font-size: 19px; font-weight: 700; line-height: 1.6;
+    }
+    .bubble::before {
+      content: ""; position: absolute; top: 50%; right: -11px; width: 18px; height: 18px;
+      background: #fff; border-right: 2px solid var(--line); border-top: 2px solid var(--line);
+      transform: translateY(-50%) rotate(45deg);
+    }
+
+    /* Start screen */
+    .title { font-size: clamp(38px, 9vw, 52px); line-height: 1.15; margin: 0 0 4px; color: var(--purple-deep); }
+    .hint { margin: 0 0 18px; font-size: 19px; color: var(--muted); }
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+    .chip { background: #fff; border: 2px solid var(--line); border-radius: 999px; padding: 6px 16px; font-size: 18px; font-weight: 700; color: var(--ink); }
+    .chip:hover { border-color: var(--purple); }
+    .chip[aria-pressed="true"] { background: var(--purple); border-color: var(--purple); color: #fff; }
+    .status { color: var(--wrong); font-weight: 700; margin: 0 0 16px; }
+    .status:empty { display: none; }
+
+    .primary, .secondary { display: block; width: 100%; min-height: 58px; border-radius: 999px; font-size: 22px; font-weight: 800; }
+    .primary { border: 0; background: var(--purple); color: #fff; box-shadow: 0 9px 22px #7666cf3d; }
+    .primary:hover { background: var(--purple-deep); }
+    .primary:disabled { background: #b9b2e6; box-shadow: none; cursor: wait; }
+    .secondary { background: #fff; border: 2px solid var(--line); color: var(--purple-deep); }
+    .secondary:hover { border-color: var(--purple); }
+
+    /* Game screen */
+    .dots { list-style: none; display: flex; justify-content: center; gap: 8px; padding: 0; margin: 0 0 22px; }
+    .dots li { width: 14px; height: 14px; border-radius: 50%; background: var(--line); }
+    .dots li.current { background: #fff; box-shadow: 0 0 0 3px var(--purple); }
+    .dots li.right { background: var(--right); box-shadow: none; }
+    .dots li.wrong { background: var(--peach); box-shadow: none; }
+
+    .question-emoji { font-size: 72px; line-height: 1; text-align: center; margin-bottom: 10px; min-height: 72px; }
+    .question { font-size: clamp(26px, 6.5vw, 32px); line-height: 1.4; text-align: center; margin: 0 0 24px; }
+
+    .options { display: grid; gap: 12px; margin-bottom: 22px; }
+    .option {
+      min-height: 62px; background: #fff; color: var(--ink);
+      border: 3px solid var(--line); border-radius: 20px;
+      font-size: 23px; font-weight: 700; transition: border-color .15s, background .15s;
+    }
+    .option:hover:not(:disabled) { border-color: var(--purple); }
+    .option:disabled { cursor: default; }
+    .option.correct { background: var(--mint); border-color: var(--right); color: #1d5a37; }
+    .option.wrong { background: #ffe6dc; border-color: var(--wrong); color: #8a3420; }
+    .option.correct::before { content: "✓ "; }
+    .option.wrong::before { content: "✗ "; }
+
+    /* End screen */
+    .stars { font-size: 52px; text-align: center; letter-spacing: 6px; color: #e5b300; }
+    .result { font-size: 34px; text-align: center; margin: 4px 0 6px; }
+    .best { text-align: center; color: var(--muted); font-size: 19px; margin: 0 0 26px; }
+    .end-actions { display: grid; gap: 12px; }
+
+    @media (max-width: 420px) {
+      .companion { gap: 12px; }
+      .mimi { width: 96px; }
+      .mimi .head { height: 76px; gap: 20px; padding-top: 20px; border-width: 6px; }
+      .mimi .body { width: 68px; height: 44px; }
+      .bubble { font-size: 17px; padding: 12px 14px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .mimi.react { animation: none; }
+      .option, .mimi .eye, .mimi .mouth { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="stage">
+    <header class="topbar">
+      <a class="home-link" href="index.html">الصفحة الرئيسية</a>
+      <div class="score" id="score-chip" hidden>⭐ <span id="score">0</span></div>
+    </header>
+
+    <section class="companion">
+      <div class="mimi" id="mimi" data-mood="thinking" aria-hidden="true">
+        <div class="antenna"></div>
+        <div class="head"><span class="eye"></span><span class="eye"></span><span class="mouth"></span></div>
+        <div class="body">♥</div>
+      </div>
+      <p class="bubble" id="bubble" aria-live="polite">لحظة، أُجهّز الأسئلة...</p>
+    </section>
+
+    <section class="screen" id="start">
+      <h1 class="title">العب مع ميمي</h1>
+      <p class="hint">اختر الموضوع الذي تحبه</p>
+      <div class="chips" id="chips" role="group" aria-label="مواضيع الأسئلة"></div>
+      <p class="status" id="status" role="alert"></p>
+      <button class="primary" id="start-btn" type="button" disabled>ابدأ اللعب</button>
+    </section>
+
+    <section class="screen" id="game" hidden>
+      <ol class="dots" id="dots" aria-label="تقدّم اللعبة"></ol>
+      <div class="question-emoji" id="q-emoji" aria-hidden="true"></div>
+      <h2 class="question" id="q-text"></h2>
+      <div class="options" id="options"></div>
+      <button class="primary" id="next-btn" type="button" hidden>السؤال التالي</button>
+    </section>
+
+    <section class="screen" id="end" hidden>
+      <div class="stars" id="stars" aria-hidden="true"></div>
+      <h2 class="result" id="result"></h2>
+      <p class="best" id="best"></p>
+      <div class="end-actions">
+        <button class="primary" id="again-btn" type="button">العب مرة أخرى</button>
+        <button class="secondary" id="topics-btn" type="button">اختر موضوعًا آخر</button>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="game.js"></script>
+</body>
+</html>
